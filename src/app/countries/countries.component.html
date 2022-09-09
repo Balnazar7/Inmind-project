@@ -1,0 +1,9 @@
+
+<div class="page-container">
+    <select name="regions" id="regions">
+        <option value=""></option>
+    </select>
+    <div class="cards-container" >
+        <app-country *ngFor="let country of countries" [country]="country"></app-country>
+    </div>
+</div>

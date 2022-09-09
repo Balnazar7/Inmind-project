@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,CAAC;EACH,KAAK,EAAE,aAAa;CACvB;;AAED,AAAA,YAAY,CAAC;EACT,KAAK,EAAE,aAAa;CACvB",
+    "sources": [
+        "startup-description.component.scss"
+    ],
+    "names": [],
+    "file": "startup-description.component.css"
+}

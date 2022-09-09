@@ -1,0 +1,32 @@
+<div class="buttons-container">
+    <button class="btn icon-btn" (click)="goBack()"><ion-icon class="btn-icon" name="chevron-back-outline"></ion-icon>Back</button>
+    <div class="flex-container">
+        <button class="btn icon-btn"><ion-icon class="btn-icon" name="cloud-upload-outline"></ion-icon>Upload</button>
+        <button class="btn icon-btn"><ion-icon class="btn-icon" name="create-outline"></ion-icon>Edit</button>
+    </div>
+</div>
+<div class="section-container">
+    <div class="details">
+        <img src={{country[0].flags.png}} alt="" width="100px" height="90px">
+        <h3 style="font-size:2em">{{country[0].name.common}}</h3>
+        <p><span style="font-weight: bold">Capital:</span> {{country[0].capital}}</p>
+        <p><span style="font-weight: bold">Region:</span> {{country[0].region}}</p>
+        <p><span style="font-weight: bold">Population:</span> {{country[0].population}}</p>
+        <p><span style="font-weight: bold">Area:</span> {{country[0].area}} m²</p>
+        <p><a href={{country[0].maps.googleMaps}}>Check on google maps</a></p>
+    </div>
+    <div class="gallery">
+
+    </div>
+</div>
+<div class="border-countries-carousel">
+    <a href="#"><ion-icon class="btn-icon" name="chevron-back-outline" size="large"></ion-icon></a>
+    <div class="border-countries-container" >
+        <div class="border-country" *ngFor="let borderCountry of borderCountriesArray">
+            <img src={{borderCountry[0].flags.png}}>
+            <!-- <button (click)="log()">LOG</button> -->
+        </div>
+    </div>
+    <a href="#"><ion-icon class="btn-icon" name="chevron-back-outline" style="transform:rotateY(180deg)" size="large"></ion-icon></a>
+</div>
+

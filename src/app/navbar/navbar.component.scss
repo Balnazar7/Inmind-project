@@ -1,6 +1,6 @@
 nav {
     background-color: #FFF5E4;
-    height: 3em;
+    height: 4em;
     ul {
         display: flex;
         align-items: center;
@@ -20,6 +20,7 @@ nav {
     background-position: 8px 10px;
     background-repeat: no-repeat;
     padding: 12px 20px 12px 30px;
+    margin-right: 10px;
 }
 
 .search-bar:focus {
@@ -28,7 +29,7 @@ nav {
 }
 
 .logo{
-    font-size: 1.5em;
+    font-size: 2em;
     color: var(--maroon);
 }
 
@@ -40,4 +41,5 @@ width:30px
     width: 15px;
     height: 15px;
     background-color: var(--pink);
+    
 }

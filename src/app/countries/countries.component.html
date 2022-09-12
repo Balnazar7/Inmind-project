@@ -1,7 +1,8 @@
-
+<app-navbar></app-navbar>
+<input type="search" class="search-bar" placeholder="Search for countries">
 <div class="page-container">
     <select name="regions" id="regions">
-        <option value=""></option>
+        <option value="" *ngFor="let region of regions"></option>
     </select>
     <div class="cards-container" >
         <app-country *ngFor="let country of countries" [country]="country"></app-country>

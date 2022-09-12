@@ -8,11 +8,13 @@ import { CountryService } from '../country.service';
 })
 export class CountriesComponent implements OnInit {
   
-  countries: any[] = []
+  countries: any[] = [];
+  regions: any[] = [];
   constructor(private countryService: CountryService) { }
 
   ngOnInit(): void {
    this.getCountries();
+   setTimeout(() => this.getRegions(),500);
   }
 
   getCountries():void {
@@ -21,4 +23,7 @@ export class CountriesComponent implements OnInit {
     })
   }
 
+  getRegions(){
+    this.regions = [...new Set(this.countries.map(e=> e.region))];
+  }
 }

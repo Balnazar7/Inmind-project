@@ -7,11 +7,11 @@ import { CountryComponent } from './country/country.component';
   providedIn: 'root'
 })
 export class CountryService {
-  private url = 'https://restcountries.com/v3.1/all';
+  private url = 'https://restcountries.com/v3.1';
   constructor(private httpclient: HttpClient) { }
 
   getCountries(): Observable<any[]> {
-    return this.httpclient.get<any[]>(this.url);
+    return this.httpclient.get<any[]>(this.url + '/all');
   }
 
   getCountry(name: any): Observable<any> {

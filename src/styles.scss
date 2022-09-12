@@ -43,7 +43,7 @@ form {
     background-color: #fff;
     padding: 1.7em;
     border-radius: 5px;
-    width: 17em;
+    width: 23em;
 }
 
 .form-control-container {
@@ -99,6 +99,7 @@ form {
     font-size: .8em;
     display: flex;
     align-items: center;
+    gap: .2em;
 }
 
 html, body { height: 100%; }

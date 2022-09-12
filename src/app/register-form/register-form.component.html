@@ -1,28 +1,27 @@
 <div class="flex-container initial-page">
-
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-control-container">
-            <input type="text" id="firstName" class="form-control" placeholder="First Name" name="firstName" formControlName="firstName" required>
-            <p class="error" *ngIf="registerForm.controls['firstName'].invalid &&
-             (registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched)">First name cannot be empty</p>
+            <input type="text" id="Firstname" class="form-control" placeholder="First Name" name="Firstname" formControlName="Firstname" required>
+            <p class="error" *ngIf="registerForm.controls['Firstname'].invalid &&
+             (registerForm.controls['Firstname'].dirty || registerForm.controls['Firstname'].touched)">First name cannot be empty</p>
         </div>
         <div class="form-control-container">
-            <input type="text" class="form-control" placeholder="Last Name" name="lastName" formControlName="lastName" required>
-            <p class="error" *ngIf="registerForm.controls['lastName'].invalid &&
-             (registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched)">Last name cannot be empty</p>
+            <input type="text" id="Lastname" class="form-control" placeholder="Last Name" name="Lastname" formControlName="Lastname" required>
+            <p class="error" *ngIf="registerForm.controls['Lastname'].invalid &&
+             (registerForm.controls['Lastname'].dirty || registerForm.controls['Lastname'].touched)">Last name cannot be empty</p>
         </div>
         <div class="form-control-container">
-            <input type="email" class="form-control" placeholder="Email Address" name="emailAddress" formControlName="emailAddress" required>
-            <p class="error" *ngIf="registerForm.controls['lastName'].invalid &&
-             (registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched)">Looks like this is not an email</p>
+            <input type="email" id="Email" class="form-control" placeholder="Email Address" name="Email" formControlName="Email" required>
+            <p class="error" *ngIf="registerForm.controls['Email'].invalid &&
+             (registerForm.controls['Email'].dirty || registerForm.controls['Email'].touched)">Looks like this is not an email</p>
         </div>
         <div class="form-control-container">
-            <input type="password" class="form-control" placeholder="Password" name="password" formControlName="password" required>
-            <p class="error" *ngIf="registerForm.controls['lastName'].invalid &&
-             (registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched)">Password cannot be empty</p>
+            <input type="Password" id="password" class="form-control" placeholder="Password" name="Password" formControlName="Password" required>
+            <p class="error" *ngIf="registerForm.controls['Password'].invalid &&
+             (registerForm.controls['Password'].dirty || registerForm.controls['Password'].touched)">Password cannot be empty</p>
         </div>
         <div class="form-control-container">
-            <select name="role" class="form-control custom-dropdown" formControlName="role" required>
+            <select name="role" id="RoleName" class="form-control custom-dropdown" formControlName="RoleName" required>
                 <option value="" selected hidden>Role</option>
                 <option *ngFor="let role of roles" [value]="role">{{role}}</option>
             </select>
@@ -31,7 +30,7 @@
         </div>
         <div>
             <a class="redirect" routerLink="/login">Already have an account? Sign in</a>
-            <button [disabled]="!registerForm.valid" class="redirect-btn">Register Now</button>
+            <button [disabled]="!registerForm.valid" class="redirect-btn" (click)="SignUp()">Register Now</button>
         </div>
     </form>
     <app-startup-description></app-startup-description>

@@ -43,10 +43,17 @@ ion-icon {
 
 .border-countries-carousel {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
 .border-countries-container {
     display: flex;
     gap: 1em;
+}
+
+.border-country img{
+    height: 100%;
+    width: 15em;
 }

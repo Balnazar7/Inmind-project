@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
@@ -14,6 +14,10 @@ import { CountryComponent } from './country/country.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { AuthenticationService } from './authentication.service';
+import { AuthGuard } from './guards/auth.guard';
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
+
 
 @NgModule({
   declarations: [
@@ -24,7 +28,7 @@ import { IonicModule } from '@ionic/angular';
     CountriesComponent,
     CountryDetailComponent,
     NavbarComponent,
-    CountryComponent
+    CountryComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,9 +37,10 @@ import { IonicModule } from '@ionic/angular';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    IonicModule.forRoot()
+    IonicModule.forRoot(),
+    MatAutocompleteModule
   ],
-  providers: [],
+  providers: [AuthenticationService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

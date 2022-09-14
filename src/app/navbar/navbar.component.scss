@@ -1,13 +1,16 @@
 nav {
     background-color: #FFF5E4;
     height: 4em;
+    box-shadow: 0 2px 10px rgba($color: #850E35, $alpha: .2);
     ul {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 0;
+        margin: 0 2em;
+        padding: 0;
         height: 100%;
         list-style: none;
+
     }
 }
 
@@ -38,8 +41,23 @@ width:30px
 }
 
 .circle {
-    width: 15px;
-    height: 15px;
+    width: 25px;
+    height: 25px;
     background-color: var(--pink);
-    
+    display: block;
+    border-radius: 50%;
+}
+
+.log-out {
+    font-size: 1.4em;
+    margin: 0;
+    cursor: pointer;
+    background-color: var(--peach);
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    width: 7em;
+    color: var(--maroon);
+    cursor: pointer;  
+    text-align: center;
 }

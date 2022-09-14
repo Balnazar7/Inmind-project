@@ -1,13 +1,27 @@
+<app-navbar></app-navbar>
 <div class="buttons-container">
-    <button class="btn icon-btn" (click)="goBack()"><ion-icon class="btn-icon" name="chevron-back-outline"></ion-icon>Back</button>
+    <button class="btn icon-btn" (click)="goBack()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+        </svg>
+        Back</button>
     <div class="flex-container">
-        <button class="btn icon-btn"><ion-icon class="btn-icon" name="cloud-upload-outline"></ion-icon>Upload</button>
-        <button class="btn icon-btn"><ion-icon class="btn-icon" name="create-outline"></ion-icon>Edit</button>
+        <button class="btn icon-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+            </svg>
+            Upload</button>
+        <button class="btn icon-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+            </svg>
+            Edit</button>
     </div>
 </div>
 <div class="section-container">
     <div class="details">
-        <img src={{country[0].flags.png}} alt="" width="100px" height="90px">
+        <img src={{country[0].flags.png}} alt="" width="150px" height="90px" class="flag">
         <h3 style="font-size:2em">{{country[0].name.common}}</h3>
         <p><span style="font-weight: bold">Capital:</span> {{country[0].capital}}</p>
         <p><span style="font-weight: bold">Region:</span> {{country[0].region}}</p>
@@ -22,7 +36,7 @@
 <div class="border-countries-carousel">
     <a href="#"><ion-icon class="btn-icon" name="chevron-back-outline" size="large"></ion-icon></a>
     <div class="border-countries-container" >
-        <div class="border-country" *ngFor="let borderCountry of borderCountriesArray">
+        <div class="border-country" *ngFor="let borderCountry of borderCountriesArray" routerLink="/country-detail/{{borderCountry[0].name.common}}">
             <img src={{borderCountry[0].flags.png}}>
             <!-- <button (click)="log()">LOG</button> -->
         </div>

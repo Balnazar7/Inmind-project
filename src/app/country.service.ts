@@ -19,10 +19,8 @@ export class CountryService {
   }
 
   getBorderCountries(code: any[]): any[]{
-    console.log('code:' + code);
     const arrayOfBorders: any[] = []
     code.forEach(element => {
-      console.log('element: ' + element);
       this.httpclient.get<any[]>(`https://restcountries.com/v3.1/alpha/${element}`).subscribe((resp) => {
         arrayOfBorders.push(resp);
       })

@@ -14,8 +14,8 @@ export class AuthenticationService {
 
   url = 'http://192.168.1.187:5005/api/User';
 
-  loginUser(username:string,password:string): Observable<any> {
-    return this.httpClient.post<LoginUser>(this.url + '/Login()', {username,password});
+  loginUser(credentials: LoginUser): Observable<any> {
+    return this.httpClient.post<LoginUser>(this.url + '/Login()', credentials);
   }
 
   logoutUser(token: string, refreshToken: string): Observable<any> {
@@ -46,7 +46,20 @@ export class AuthenticationService {
     return this.httpClient.post<RefreshToken>(this.url + '/RefreshToken', {refreshtoken})
   }
 
+
+  setToken(accessToken: string, refreshToken: string){
+    localStorage.setItem('AccessToken', accessToken);
+    localStorage.setItem('RefreshToken', refreshToken);
+  }
+
+  removeTokens(){
+    localStorage.removeItem('AccessToken');
+    localStorage.removeItem('RefreshToken');
+  }
   
+  loggedIn() {
+    return !!localStorage.getItem('AccessToken');
+  }
 
 
 

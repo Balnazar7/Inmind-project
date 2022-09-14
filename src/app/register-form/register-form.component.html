@@ -1,32 +1,47 @@
 <div class="flex-container initial-page">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="registerForm">
         <div class="form-control-container">
             <input type="text" id="Firstname" class="form-control" placeholder="First Name" name="Firstname" formControlName="Firstname" required>
-            <p class="error" *ngIf="registerForm.controls['Firstname'].invalid &&
-             (registerForm.controls['Firstname'].dirty || registerForm.controls['Firstname'].touched)">First name cannot be empty</p>
+            <p class="error" *ngIf="registerForm.controls['Firstname'].invalid && 
+            registerForm.controls['Firstname'].errors && 
+            (registerForm.controls['Firstname'].dirty || registerForm.controls['Firstname'].touched)">First name cannot be empty</p>
         </div>
         <div class="form-control-container">
             <input type="text" id="Lastname" class="form-control" placeholder="Last Name" name="Lastname" formControlName="Lastname" required>
             <p class="error" *ngIf="registerForm.controls['Lastname'].invalid &&
+            registerForm.controls['Lastname'].errors && 
              (registerForm.controls['Lastname'].dirty || registerForm.controls['Lastname'].touched)">Last name cannot be empty</p>
         </div>
         <div class="form-control-container">
             <input type="email" id="Email" class="form-control" placeholder="Email Address" name="Email" formControlName="Email" required>
             <p class="error" *ngIf="registerForm.controls['Email'].invalid &&
+            registerForm.controls['Email'].errors &&
              (registerForm.controls['Email'].dirty || registerForm.controls['Email'].touched)">Looks like this is not an email</p>
         </div>
         <div class="form-control-container">
             <input type="Password" id="password" class="form-control" placeholder="Password" name="Password" formControlName="Password" required>
-            <p class="error" *ngIf="registerForm.controls['Password'].invalid &&
-             (registerForm.controls['Password'].dirty || registerForm.controls['Password'].touched)">Password cannot be empty</p>
+            <div *ngIf="registerForm.controls['Password'].invalid &&
+            (registerForm.controls['Password'].dirty || registerForm.controls['Password'].touched)">
+                <p class="error" *ngIf="registerForm.controls['Password'].hasError('required')">Password cannot be empty</p>
+                <p class="error" *ngIf="registerForm.controls['Password'].hasError('pattern')">Please Choose a strong password</p>
+
+            </div>
+        </div>
+        <div class="form-control-container">
+            <input type="Password" id="confirmpassword" class="form-control" placeholder="Confirm Password" name="ConfirmPassword" formControlName="ConfirmPassword" required>
+            <div *ngIf="registerForm.controls['ConfirmPassword'].invalid &&
+            (registerForm.controls['ConfirmPassword'].dirty || registerForm.controls['ConfirmPassword'].touched)">
+                <p class="error" *ngIf="registerForm.controls['ConfirmPassword'].hasError('confirmedPassword')">Passwords do not match</p>
+                <p class="error" *ngIf="registerForm.controls['ConfirmPassword'].hasError('required')">Please confirm your password</p>
+            </div>
         </div>
         <div class="form-control-container">
             <select name="role" id="RoleName" class="form-control custom-dropdown" formControlName="RoleName" required>
                 <option value="" selected hidden>Role</option>
                 <option *ngFor="let role of roles" [value]="role">{{role}}</option>
             </select>
-            <p class="error" *ngIf="registerForm.controls['lastName'].invalid &&
-             (registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched)">You have to select a role</p>
+            <!-- <p class="error" *ngIf="registerForm.controls['lastName'].invalid &&
+             (registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched)">You have to select a role</p> -->
         </div>
         <div>
             <a class="redirect" routerLink="/login">Already have an account? Sign in</a>

@@ -1,5 +1,5 @@
-ion-icon {
-    font-size: 25px;
+button:disabled {
+    opacity: 0.5
 }
 
 .flag {
@@ -19,6 +19,9 @@ ion-icon {
 
 .section-container {
     margin: 0 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .details > *{
@@ -47,20 +50,7 @@ ion-icon {
 }
 
 .border-countries-carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.border-countries-container {
-    display: flex;
-    gap: 1em;
-}
-
-.border-country img{
-    height: 100%;
-    width: 15em;
-    box-shadow: 0 0 10px 5px rgba($color: #000, $alpha: .1);
-    cursor: pointer;
+    width:100%;
+    position: absolute;
+    bottom: 0;
 }

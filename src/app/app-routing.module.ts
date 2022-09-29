@@ -10,13 +10,9 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { ReturnToLoginGuard } from './guards/return-to-login.guard';
 
 const routes: Routes = [
-  { path: 'register', component: RegisterFormComponent},
-  { path: 'login', component: LoginFormComponent},
-  { path: 'countries', component: CountriesComponent, canActivate: [AuthGuard]},
-  { path: 'navbar', component: NavbarComponent},
-  { path: 'country', component: CountryComponent},
-  { path: 'country-detail/:name', component: CountryDetailComponent},
-  { path: '**', redirectTo: 'login' }
+  { path: 'authenticationCountriesModule', loadChildren: () => import('./authentication-countries-module/authentication-countries-module.module').then(m => m.AuthenticationCountriesModuleModule) },
+  { path: 'countriesModule', loadChildren: () => import('./countries-module/countries-module.module').then(m => m.CountriesModuleModule) },
+  { path: '**', redirectTo: '/authenticationCountriesModule/login'}
 ];
 
 @NgModule({

@@ -5,12 +5,21 @@
     --beige: #FFF5E4;
     --font-small: .7em;
     --default-padding: 10px;
+    --swiper-image-ratio: 33.3%; /* ratio 16:9 = 56.25% */
+
+    --swiper-width: 50%;
+    --swiper-inactive-scale: .85; /* makes the other slide smaller */
+    
+    /* responsive settings */
+    --swiper-mobile-width: 90%;
+    --swiper-mobile-inactive-scale: .95;
 }
 
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #f6f6f6 !important;
 }
 
 .initial-page {
@@ -43,7 +52,7 @@ form {
     background-color: #fff;
     padding: 1.7em;
     border-radius: 5px;
-    width: 23em;
+    width: calc(15em + 10vw);
 }
 
 .form-control-container {
@@ -102,6 +111,10 @@ form {
     gap: .2em;
 }
 
+button {
+    height: fit-content;
+}
+
 button:hover {
     transition: 200ms linear;
     box-shadow: -0 0 2px 2px rgba(0,0,0,0.1);
@@ -111,3 +124,10 @@ button:hover {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+@media (max-width: 700px){
+    .flex-container {
+        flex-direction: column;
+    }
+}

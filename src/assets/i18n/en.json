@@ -1,0 +1,38 @@
+{
+    "startupDescription": {
+        "title": "The World at Your Hands",
+        "description": "Get your knowledge one step further and discover all the countries of the world"
+    },
+    "signUp": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email Address",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "role": "Role",
+        "alreadyHaveAnAccount": "Already have an account? Sign in",
+        "roles": {
+            "admin": "Admin",
+            "user": "User"
+        },
+        "firstNameError": "First name cannot be empty",
+        "lastNameError": "Last name cannot be empty",
+        "emailError": "Looks like this is not an email",
+        "passwordErrorRequired": "Password cannot be empty",
+        "passwordErrorStrong": "Please choose a strong password",
+        "confirmPasswordErrorRequired": "Please confirm your password",
+        "confirmPasswordErrorMatch": "Passwords do not match",
+        "registerNow": "Register Now"
+    },
+    "signIn": {
+        "email": "Email Address",
+        "password": "Password",
+        "rememberMe": "Remember me",
+        "emailError": "Email can't be empty",
+        "passwordError": "Password can't be empty",
+        "error": "Incorrect email and/or password",
+        "alreadyHaveAnAccount": "Already have an account? Sign in",
+        "login": "Login"
+    }
+    
+}

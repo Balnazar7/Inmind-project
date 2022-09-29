@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent implements OnInit {
 
+  isInvalidCredentials: boolean = false;
   loginForm: FormGroup;
   constructor(fb: FormBuilder, private authService: AuthenticationService, private router: Router) {
     this.loginForm = fb.group({
@@ -24,14 +25,14 @@ export class LoginFormComponent implements OnInit {
   }
 
   login() {
-    console.log(this.loginForm.value);
     let loginUser: LoginUser = this.loginForm.value;
     this.authService.loginUser(loginUser).subscribe((res)=>{
       let login: LoginResponse = res;
       this.authService.setToken(login.Login.AccessToken, login.Login.RefreshToken);
-      this.router.navigate(['/countries']);
+      this.authService.setProfile();
+      this.router.navigate(['/countriesModule/countries']);
     },(error)=>{
-      console.log(error);
+      this.isInvalidCredentials = true;
     })
   }
 

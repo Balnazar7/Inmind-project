@@ -1,26 +1,22 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanDeactivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import {CanActivate, UrlTree, Router} from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
-import { CountriesComponent } from '../countries/countries.component';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReturnToLoginGuard implements CanDeactivate<unknown> {
+export class ReturnToLoginGuard implements CanActivate {
   constructor(private auth: AuthenticationService,
     private router: Router){}
-  canDeactivate(
-    component: CountriesComponent,
-    currentRoute: ActivatedRouteSnapshot,
-    currentState: RouterStateSnapshot,
-    nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    canActivate(): boolean {
+    if(this.auth.loggedIn()){
+      return false;
+    } else {
+      this.router.navigate(['/countries'])
+     return true;
+    }
+    }
 
-      if(this.auth.loggedIn()){
-        return false;
-      }
-      else return false;
-    
-  }
+
   
 }

@@ -1,11 +1,28 @@
 <app-navbar></app-navbar>
-<input id="searchBar" type="search" class="search-bar bar" placeholder="Search for countries">
-<select name="regions" id="regions" class="bar">
-    <option value="" *ngFor="let region of regions">{{region}}</option>
+<input id="searchBar" type="search" class="search-bar bar" placeholder="Search for countries" [(ngModel)]="searchValue" (ngModelChange)="Search()">
+<select name="regions" id="regions" class="bar" [(ngModel)]="regionsFilter" (ngModelChange)="regionChange()">
+    <option value="" disabled hidden>Select a region</option>
+    <option value="all">All</option>
+    <option value={{region}} *ngFor="let region of regions">{{region}}</option>
 </select>
 <div class="page-container">
-    
+    <!-- Loading Spinner -->
+    <div class="lds-spinner" *ngIf="!isLoaded">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <!-- Loading Spinner -->
     <div class="cards-container" >
-        <app-country *ngFor="let country of countries" [country]="country"></app-country>
+        <app-country *ngFor="let country of countries$ | async" [country]="country"></app-country>
     </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CountryService } from './country.service';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +7,12 @@ import { CountryService } from './country.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  countries: any;
 
-  constructor(private service: CountryService){}
+  constructor(private ngxPermissionsService: NgxPermissionsService){}
 
   ngOnInit(){
-    this.service.getCountries()
-      .subscribe(response => {
-        this.countries = response;
-      })
+    if(localStorage.getItem('permissions')){
+      this.ngxPermissionsService.loadPermissions(JSON.parse(localStorage.getItem('permissions')!));
+    }
   }
 }

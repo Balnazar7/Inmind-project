@@ -12,7 +12,7 @@
                 <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
             </svg>
             Upload</button>
-        <button class="btn icon-btn">
+        <button class="btn icon-btn" (click)="editClicked()" id="editBtn" [disabled]="isEditClicked" *ngxPermissionsOnly="['ADMIN']">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
             </svg>
@@ -20,27 +20,29 @@
     </div>
 </div>
 <div class="section-container">
-    <div class="details">
-        <img src={{country[0].flags.png}} alt="" width="150px" height="90px" class="flag">
-        <h3 style="font-size:2em">{{country[0].name.common}}</h3>
-        <p><span style="font-weight: bold">Capital:</span> {{country[0].capital}}</p>
-        <p><span style="font-weight: bold">Region:</span> {{country[0].region}}</p>
-        <p><span style="font-weight: bold">Population:</span> {{country[0].population}}</p>
-        <p><span style="font-weight: bold">Area:</span> {{country[0].area}} m²</p>
-        <p><a href={{country[0].maps.googleMaps}}>Check on google maps</a></p>
+    <div class="details" *ngIf="!isEditClicked">
+        <img src={{country.flags.png}} alt="country-flag" width="150px" height="90px" class="flag">
+        <h3 style="font-size:2em">{{country.name.common}}</h3>
+        <p><span style="font-weight: bold">Capital:</span> {{country.capital}}</p>
+        <p><span style="font-weight: bold">Region:</span> {{country.region}}</p>
+        <p><span style="font-weight: bold">Population:</span> {{country.population}}</p>
+        <p><span style="font-weight: bold">Area:</span> {{country.area}} m²</p>
+        <p><a href={{country.maps.googleMaps}}>Check on google maps</a></p>
     </div>
-    <div class="gallery">
+    <div class="details" *ngIf="isEditClicked" style="display:flex;flex-direction:column">
+        <img src={{country.flags.png}} alt="country-flag" width="150px" height="90px" class="flag">
+        <input type="text" value="{{country.name.common}}">
+        <input type="text" value="{{country.capital}}">
+        <input type="text" value="{{country.region}}">
+        <input type="text" value="{{country.population}}">
+        <input type="text" value="{{country.area}}">
+        <button class="btn" (click)="saveClick()">Save</button>
+    </div>
+    <!-- <div class="gallery">
 
-    </div>
+    </div> -->
 </div>
 <div class="border-countries-carousel">
-    <a href="#"><ion-icon class="btn-icon" name="chevron-back-outline" size="large"></ion-icon></a>
-    <div class="border-countries-container" >
-        <div class="border-country" *ngFor="let borderCountry of borderCountriesArray" routerLink="/country-detail/{{borderCountry[0].name.common}}">
-            <img src={{borderCountry[0].flags.png}}>
-            <!-- <button (click)="log()">LOG</button> -->
-        </div>
-    </div>
-    <a href="#"><ion-icon class="btn-icon" name="chevron-back-outline" style="transform:rotateY(180deg)" size="large"></ion-icon></a>
+    <ng-image-slider [images]="imageObject" #nav [imageSize]="{width:'100%'}"
+     [manageImageRatio]="true" [infinite]="true" (imageClick)="imageClick($event)" [imagePopup]="false"></ng-image-slider>
 </div>
-

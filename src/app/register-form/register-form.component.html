@@ -1,4 +1,6 @@
 <div class="flex-container initial-page">
+    <app-startup-description></app-startup-description>
+
     <form [formGroup]="registerForm">
         <div class="form-control-container">
             <input type="text" id="Firstname" class="form-control" placeholder="First Name" name="Firstname" formControlName="Firstname" required>
@@ -48,5 +50,8 @@
             <button [disabled]="!registerForm.valid" class="redirect-btn" (click)="SignUp()">Register Now</button>
         </div>
     </form>
-    <app-startup-description></app-startup-description>
+    <div *transloco="let text">
+        <p>{{ text('hello') }}</p>
+    </div>
 </div>
+

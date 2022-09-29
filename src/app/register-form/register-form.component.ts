@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { ConfirmedValidator } from '../Confirmed.validator';
-
+ 
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
@@ -14,7 +15,7 @@ export class RegisterFormComponent implements OnInit {
   roles: string[] = ['Admin','User'];
 
 
-  constructor(fb: FormBuilder, private authService: AuthenticationService) {
+  constructor(fb: FormBuilder, private authService: AuthenticationService, private router: Router) {
     this.registerForm = fb.group({
       Firstname: ['',[Validators.required, Validators.maxLength(32)]],
       Lastname: ['', [Validators.required, Validators.maxLength(32)]],
@@ -32,9 +33,9 @@ export class RegisterFormComponent implements OnInit {
 
 
   SignUp(){
-    console.log(this.registerForm.value);
-    this.authService.signUp(this.registerForm.value,this.registerForm.value.RoleName).subscribe((res)=>{
-      console.log('sign up res' + res);
+    this.authService.signUp(this.registerForm.value,this.registerForm.value.RoleName).subscribe(()=>{
+      console.log('sign up successful');
+      this.router.navigate(['/login'])
     });
   }
 

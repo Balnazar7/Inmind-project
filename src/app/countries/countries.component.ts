@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CountryService } from '../country.service';
-import { of, Subject, switchMap } from 'rxjs'
-import { CountriesModel } from '../CountriesModel';
+import { map } from 'rxjs'
+import { Store } from '@ngrx/store';
+import { retrievedCountriesList } from '../state/countries.actions';
+import { selectCountries } from '../state/countries.selector';
 
 @Component({
   selector: 'app-countries',
@@ -10,31 +12,49 @@ import { CountriesModel } from '../CountriesModel';
 })
 export class CountriesComponent implements OnInit {
   
-  private searchCountries = new Subject<string>();
-  countries: CountriesModel[] = [];
-  regions: any[] = [];
-  constructor(private countryService: CountryService) { }
+  regionsFilter: string = '';
+  searchValue: string = '';
+  countries$ = this.store.select(selectCountries);
+  regions: string[] = [];
+  isLoaded: boolean = false;
+  constructor(private countryService: CountryService, private store: Store) { }
 
   ngOnInit() {
-    this.getCountries();
-  }
-
-  getCountries():void {
-    this.countryService.getCountries().subscribe((res) => {
-      this.countries = res;
-      this.regions = [...new Set(this.countries.map(e=> e.region))];
+    this.countryService
+    .getCountriesState()
+    .subscribe((countries) => {
+      
+      this.store.dispatch(retrievedCountriesList({countries}))
+      this.isLoaded = true;
+    }
+    );
+    
+    this.countries$.subscribe((data) =>{
+      this.regions = [...new Set(data.map(e => e.region))]
     })
   }
-  
 
-  // this.searchCountries
-  // .pipe(
-  //   switchMap((term: string) =>
-  //   return of(this.countries.filter()))
+  Search(){
+    if(this.regionsFilter === 'all' || this.regionsFilter === ''){
+      this.countries$ = this.store.select(selectCountries)
+      .pipe(
+        map(countries => countries.filter(country => country.name.common.toLowerCase().includes(this.searchValue))))
+    }
+    else {
+      this.countries$ = this.store.select(selectCountries)
+      .pipe(
+        map(countries => countries.filter(country => country.name.common.toLowerCase().includes(this.searchValue) && country.region.toLowerCase() === this.regionsFilter.toLowerCase())))
+    }
+  }
 
-  // )
-
-  // Search(){
-
-  // }
+  regionChange() {
+    if(this.regionsFilter === 'all'){
+     this.countries$ =  this.store.select(selectCountries)
+    }
+    else{
+      this.countries$ = this.store.select(selectCountries)
+      .pipe(
+        map(countries => countries.filter(country => country.region.toLowerCase() === this.regionsFilter.toLowerCase())))
+    }
+  }
 }

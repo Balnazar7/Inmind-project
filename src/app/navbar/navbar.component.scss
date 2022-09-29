@@ -10,7 +10,6 @@ nav {
         padding: 0;
         height: 100%;
         list-style: none;
-
     }
 }
 
@@ -34,6 +33,7 @@ nav {
 .logo{
     font-size: 2em;
     color: var(--maroon);
+    text-decoration: none;
 }
 
 .account {
@@ -60,4 +60,8 @@ width:30px
     color: var(--maroon);
     cursor: pointer;  
     text-align: center;
+}
+
+.menu-bar {
+    display: none;
 }

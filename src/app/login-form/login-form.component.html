@@ -1,13 +1,18 @@
 <div class="flex-container initial-page">
+    <app-startup-description></app-startup-description>
 
     <form [formGroup]="loginForm">
         <div class="form-control-container">
             <input type="email" name="Username" class="form-control" placeholder="Email Address" formControlName="Username" required>
+            <p class="error" *ngIf="loginForm.controls['Username'].hasError('required') && loginForm.controls['Username'].invalid
+            && (loginForm.controls['Username'].touched || loginForm.controls['Username'].dirty)">Email can't be empty</p>
         </div>
         <div class="form-control-container">
             <input type="password" name="Password" class="form-control" placeholder="Password" formControlName="Password" required>
+            <p class="error" *ngIf="loginForm.controls['Password'].hasError('required') && loginForm.controls['Password'].invalid
+            && (loginForm.controls['Password'].touched || loginForm.controls['Password'].dirty)">Password can't be empty</p>
         </div>
-        <p class="error" *ngIf="">Incorrect email and/or password</p>
+        <p class="error" *ngIf="this.isInvalidCredentials">Incorrect email and/or password</p>
         <div>
             <div class="remember-me">
                 <input type="checkbox">
@@ -17,5 +22,4 @@
             <button class="redirect-btn" (click)="login()">Login</button>
         </div>
     </form>
-    <app-startup-description></app-startup-description>
 </div>

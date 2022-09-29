@@ -2,14 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'
 import { DeleteAccountUser, LoginUser, LogoutUser, RefreshToken, SignUpUser } from './auth.models';
+import jwt_decode from "jwt-decode";
+import { NgxPermissionsModule, NgxPermissionsService } from 'ngx-permissions'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
+  
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private ngxPermissionsService: NgxPermissionsService
   ) { }
 
   url = 'http://192.168.1.187:5005/api/User';
@@ -18,7 +23,7 @@ export class AuthenticationService {
     return this.httpClient.post<LoginUser>(this.url + '/Login()', credentials);
   }
 
-  logoutUser(token: string, refreshToken: string): Observable<any> {
+  logoutUser(token: string | null, refreshToken: string | null): Observable<any> {
     return this.httpClient.post<LogoutUser>(this.url + '/Logout()', {token,refreshToken})
   };
 
@@ -51,6 +56,33 @@ export class AuthenticationService {
     localStorage.setItem('AccessToken', accessToken);
     localStorage.setItem('RefreshToken', refreshToken);
   }
+
+  
+  setProfile(): void{
+  const tokenInfo = this.getDecodedAccessToken(this.getJwtToken());
+  if(tokenInfo.realm_access.roles.includes("Admin")){
+    this.ngxPermissionsService.addPermission('ADMIN');
+    localStorage.setItem("permissions",JSON.stringify(['ADMIN']));
+  }
+  else{
+    this.ngxPermissionsService.addPermission('USER');
+    localStorage.setItem("permissions",JSON.stringify(['USER']));
+  }
+
+}
+getJwtToken(): string {
+  return localStorage.getItem('AccessToken')!;
+}
+
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch(Error) {
+      return null;
+    }
+  }
+
+
 
   removeTokens(){
     localStorage.removeItem('AccessToken');

@@ -46,7 +46,7 @@
              (registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched)">You have to select a role</p> -->
         </div>
         <div>
-            <a class="redirect" routerLink="/login">Already have an account? Sign in</a>
+            <a class="redirect" routerLink="/authenticationCountriesModule/login">Already have an account? Sign in</a>
             <button [disabled]="!registerForm.valid" class="redirect-btn" (click)="SignUp()">Register Now</button>
         </div>
     </form>
